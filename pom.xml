@@ -35,6 +35,7 @@
   <modules>
     <module>war</module>
     <module>packaging</module>
+    <module>services</module>
   </modules>
   <scm>
     <connection>scm:git:git://github.com/exo-addons/gamification-connectors.git</connection>
