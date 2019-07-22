@@ -31,7 +31,7 @@
   <artifactId>gamification-connectors</artifactId>
   <version>1.0.x-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>eXo Add-on:: eXo Gamification Connectors</name>
+  <name>eXo Gamification Connectors</name>
   <description>eXo Add-on for eXo Gamification Connectors</description>
   <modules>
     <module>war</module>
