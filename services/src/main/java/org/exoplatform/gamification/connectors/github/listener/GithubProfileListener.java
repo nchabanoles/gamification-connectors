@@ -91,7 +91,6 @@ public class GithubProfileListener  extends ProfileListenerPlugin {
     @Override
     public void aboutMeUpdated(ProfileLifeCycleEvent event) {
 
-
     }
 
 
