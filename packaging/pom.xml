@@ -13,14 +13,12 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>gamification-connectors-war</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>gamification-connectors-services</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>

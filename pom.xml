@@ -57,6 +57,23 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- Current project artifacts -->
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>gamification-connectors-services</artifactId>
+        <version>${project.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>gamification-connectors-war</artifactId>
+        <version>${project.version}</version>
+        <scope>provided</scope>
+        <type>war</type>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 </project>
