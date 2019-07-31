@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2009 eXo Platform SAS.
+    Copyright (C) 2019 eXo Platform SAS.
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -46,6 +46,8 @@
   </scm>
   <properties>
     <org.exoplatform.platform.version>5.3.x-SNAPSHOT</org.exoplatform.platform.version>
+    <org.lombok.version>1.18.2</org.lombok.version>
+    <org.jackson.version>2.4.2</org.jackson.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -72,6 +74,19 @@
         <version>${project.version}</version>
         <scope>provided</scope>
         <type>war</type>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${org.lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-base</artifactId>
+        <version>${org.jackson.version}</version>
       </dependency>
 
     </dependencies>
