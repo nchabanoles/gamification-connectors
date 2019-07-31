@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity(name = "GitHubAccountEntity")
 @ExoEntity
-@Table(name = "GITHUB_ACCOUNT")
+@Table(name = "GAM_GITHUB_ACCOUNTS")
 @Data
 @NamedQueries({
         @NamedQuery(
@@ -27,8 +27,8 @@ import java.io.Serializable;
 public class GitHubAccountEntity implements Serializable {
 
     @Id
-    @SequenceGenerator(name="SEQ_GITHUB_ACCOUNT_ID", sequenceName="SEQ_GITHUB_ACCOUNT_ID")
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="SEQ_GITHUB_ACCOUNT_ID")
+    @SequenceGenerator(name="SEQ_GAM_GITHUB_ACCOUNTS_ID", sequenceName="SEQ_GAM_GITHUB_ACCOUNTS_ID")
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="SEQ_GAM_GITHUB_ACCOUNTS_ID")
     @Column(name = "ID")
     protected Long id;
 
