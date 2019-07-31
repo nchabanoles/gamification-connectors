@@ -10,7 +10,7 @@
         <type>org.exoplatform.gamification.connectors.github.dao.GitHubAccountDAO</type>
     </component>
 
-    <!-- Gamification storage layour (Liquebase initializer) -->
+    <!-- Gamification Connector storage layout (Liquibase initializer) -->
     <external-component-plugins>
         <target-component>org.exoplatform.commons.api.persistence.DataInitializer</target-component>
         <component-plugin>
