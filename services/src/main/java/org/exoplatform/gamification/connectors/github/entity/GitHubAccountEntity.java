@@ -26,7 +26,6 @@ import java.io.Serializable;
                 })
 public class GitHubAccountEntity implements Serializable {
 
-
     @Id
     @SequenceGenerator(name="SEQ_GITHUB_ACCOUNT_ID", sequenceName="SEQ_GITHUB_ACCOUNT_ID")
     @GeneratedValue(strategy=GenerationType.AUTO, generator="SEQ_GITHUB_ACCOUNT_ID")
