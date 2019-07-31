@@ -84,7 +84,6 @@ public class GithubProfileListener  extends ProfileListenerPlugin {
     @Override
     public void createProfile(ProfileLifeCycleEvent event) {
 
-
     }
 
 
