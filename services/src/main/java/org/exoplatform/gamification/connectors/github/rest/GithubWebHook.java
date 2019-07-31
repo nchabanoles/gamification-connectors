@@ -100,7 +100,6 @@ public class GithubWebHook implements ResourceContainer {
 
             }
 
-
             return Response.ok().build();
         }
            catch (Exception e){
