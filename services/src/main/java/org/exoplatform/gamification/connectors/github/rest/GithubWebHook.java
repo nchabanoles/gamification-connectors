@@ -30,7 +30,6 @@ public class GithubWebHook implements ResourceContainer {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("webhook")
-
     public Response gitHubEvent(@HeaderParam("x-github-event") String event, String obj) {
 
         try {
