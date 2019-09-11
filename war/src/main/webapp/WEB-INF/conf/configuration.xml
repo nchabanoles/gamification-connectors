@@ -23,18 +23,7 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.exoplatform.org/xml/ns/kernel_1_2.xsd http://www.exoplatform.org/xml/ns/kernel_1_2.xsd"
 	xmlns="http://www.exoplatform.org/xml/ns/kernel_1_2.xsd">
 
-	<component>
-		<key>org.exoplatform.gamification.connectors.github.GithubIMSetting</key>
-		<type>org.exoplatform.gamification.connectors.github.GithubIMSetting</type>
-	</component>
-
-	<external-component-plugins>
-		<target-component>org.exoplatform.social.core.manager.IdentityManager</target-component>
-		<component-plugin>
-			<name>GamificationProfileTracker</name>
-			<set-method>registerProfileListener</set-method>
-			<type>org.exoplatform.gamification.connectors.github.listener.GithubProfileListener</type>
-		</component-plugin>
-	</external-component-plugins>
+	<import>war:/conf/gamification-connectors/portal/menu-configuration.xml</import>
+	<import>war:/conf/gamification-connectors/portal/portal-configuration.xml</import>
 
 </configuration>

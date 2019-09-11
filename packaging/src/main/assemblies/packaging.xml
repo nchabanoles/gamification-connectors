@@ -12,11 +12,12 @@
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>webapps</outputDirectory>
       <includes>
-        <include>${project.groupId}:gamification-connectors-*:war</include>
+        <include>${project.groupId}:gamification-connectors-war:war</include>
       </includes>
       <scope>provided</scope>
       <outputFileNameMapping>gamification-connectors.war</outputFileNameMapping>
     </dependencySet>
+
     <!-- Libraries -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>

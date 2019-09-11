@@ -9,6 +9,9 @@
     <component>
         <type>org.exoplatform.gamification.connectors.github.dao.GitHubAccountDAO</type>
     </component>
+    <component>
+        <type>org.exoplatform.gamification.connectors.github.dao.GitHubHookDAO</type>
+    </component>
 
     <!-- Gamification Connector storage layout (Liquibase initializer) -->
     <external-component-plugins>
