@@ -61,8 +61,8 @@ public class HooksManagementRest implements ResourceContainer {
 
     try {
       Long id = githubHooksManagement.addHook(hook.getWebhook(), hook.getOrganization(), hook.getRepo(), hook.getEnabled());
-
       githubHooksManagement.createHook(id, hook, true);
+      LOG.info("New webhook added by {}",sourceIdentity.getRemoteId());
       return Response.status(Response.Status.CREATED).build();
     } catch (Exception e) {
       return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
@@ -79,6 +79,7 @@ public class HooksManagementRest implements ResourceContainer {
     }
     try {
       githubHooksManagement.updateHook(hook);
+      LOG.info("Webhook {} edited by {}",id, sourceIdentity.getRemoteId());
       return Response.ok().build();
     } catch (Exception e) {
       return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
@@ -96,6 +97,7 @@ public class HooksManagementRest implements ResourceContainer {
     try {
       GitHubHookEntity hook = githubHooksManagement.getHookEntityById(id);
       githubHooksManagement.deleteHook(hook);
+      LOG.info("Webhook {} deleted by {}",id, sourceIdentity.getRemoteId());
       return Response.ok().build();
     } catch (Exception e) {
       return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
