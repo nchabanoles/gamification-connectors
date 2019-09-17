@@ -282,7 +282,10 @@ public class GithubHooksManagement {
       return null;
     try {
       return gitHubAccountDAO.getAccountByGithubId(id).getUserName();
-    } catch (Exception e) {
+    } catch (NullPointerException e) {
+      LOG.error("Cannot get user with GithubId {}", id);
+      return null;
+    }catch (Exception e) {
       LOG.error("Cannot get user with GithubId {}", id, e);
       return null;
     }
