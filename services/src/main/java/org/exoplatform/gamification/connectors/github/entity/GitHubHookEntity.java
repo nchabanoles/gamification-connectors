@@ -13,6 +13,10 @@ import lombok.Data;
 @ExoEntity
 @Table(name = "GAM_GITHUB_HOOKS")
 @Data
+@NamedQueries({
+        @NamedQuery(name = "GitHubHookEntity.getHooksByExoEnvironment", query = "SELECT hook FROM GitHubHookEntity hook where hook.exoEnvironment = :exoEnvironment "),
+        @NamedQuery(name = "GitHubHookEntity.getHooksByOrgRepoAndEnvironment", query = "SELECT hook FROM GitHubHookEntity hook where hook.organization = :org and hook.repo = :repo and hook.exoEnvironment = :exoEnvironment")
+})
 
 public class GitHubHookEntity implements Serializable {
 
@@ -36,6 +40,9 @@ public class GitHubHookEntity implements Serializable {
 
   @Column(name = "EVENTS", nullable = false)
   protected String  events;
+
+  @Column(name = "EXO_ENVIRONMENT", nullable = false)
+  protected String  exoEnvironment;
 
   @Column(name = "ENABLED", nullable = false)
   protected Boolean enabled;

@@ -20,6 +20,8 @@ public class GithubHooksManagementTest extends BaseGithubConnectorsTest {
 
   protected String  webhook      = "webhook";
 
+  protected String  eXoEnvironment     = "testEnvironment";
+
   protected String  events       =
                            "push, pull_request,pull_request_review,pull_request_review_comment,pull_request_review_comment";
 
@@ -38,11 +40,11 @@ public class GithubHooksManagementTest extends BaseGithubConnectorsTest {
   public void testGetAllHooks() {
 
     GithubHooksManagement githubHooksManagement = getService(GithubHooksManagement.class);
-    List<GitHubHookEntity> list = githubHooksManagement.getAllHooks();
+    List<GitHubHookEntity> list = githubHooksManagement.getHooksByExoEnvironment(eXoEnvironment);
     assertNotNull(list);
     assertEquals(0, list.size());
-    newGitHubHookEntity(id, organization, repo, webhook, events, enabled);
-    list = githubHooksManagement.getAllHooks();
+    newGitHubHookEntity(id, organization, repo, webhook, events, eXoEnvironment, enabled);
+    list = githubHooksManagement.getHooksByExoEnvironment(eXoEnvironment);
     assertNotNull(list);
     assertEquals(1, list.size());
 
@@ -52,11 +54,11 @@ public class GithubHooksManagementTest extends BaseGithubConnectorsTest {
   public void testCreateHook() {
 
     GithubHooksManagement githubHooksManagement = getService(GithubHooksManagement.class);
-    List<GitHubHookEntity> list = githubHooksManagement.getAllHooks();
+    List<GitHubHookEntity> list = githubHooksManagement.getHooksByExoEnvironment(eXoEnvironment);
     assertNotNull(list);
     assertEquals(0, list.size());
-    newGitHubHookEntity(id, organization, repo, webhook, events, enabled);
-    list = githubHooksManagement.getAllHooks();
+    newGitHubHookEntity(id, organization, repo, webhook, events, eXoEnvironment, enabled);
+    list = githubHooksManagement.getHooksByExoEnvironment(eXoEnvironment);
     assertNotNull(list);
     assertEquals(1, list.size());
   }
@@ -65,7 +67,7 @@ public class GithubHooksManagementTest extends BaseGithubConnectorsTest {
   public void testUpdateHookEntity() {
 
     GithubHooksManagement githubHooksManagement = getService(GithubHooksManagement.class);
-    GitHubHookEntity hook = newGitHubHookEntity(id, organization, repo, webhook, events, true);
+    GitHubHookEntity hook = newGitHubHookEntity(id, organization, repo, webhook, events, eXoEnvironment, true);
     GitHubHookEntity entity = githubHooksManagement.getHookEntityById(hook.getId());
     assertNotNull(entity);
     assertEquals(true, entity.getEnabled());
@@ -81,10 +83,10 @@ public class GithubHooksManagementTest extends BaseGithubConnectorsTest {
   public void testDeleteHookEntity() {
 
     GithubHooksManagement githubHooksManagement = getService(GithubHooksManagement.class);
-    GitHubHookEntity hook = newGitHubHookEntity(id, organization, repo, webhook, events, enabled);
+    GitHubHookEntity hook = newGitHubHookEntity(id, organization, repo, webhook, events, eXoEnvironment, enabled);
     GitHubHookEntity entity = githubHooksManagement.getHookEntityById(hook.getId());
     assertNotNull(entity);
-    githubHooksManagement.DeleteHookEntity(hook);
+    githubHooksManagement.deleteHookEntity(hook);
     entity = githubHooksManagement.getHookEntityById(hook.getId());
     assertNull(entity);
 

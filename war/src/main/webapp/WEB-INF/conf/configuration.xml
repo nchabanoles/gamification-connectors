@@ -25,5 +25,6 @@
 
 	<import>war:/conf/gamification-connectors/portal/menu-configuration.xml</import>
 	<import>war:/conf/gamification-connectors/portal/portal-configuration.xml</import>
+    <import>war:/conf/gamification-connectors/bundle/bundle-configuration.xml</import>
 
 </configuration>

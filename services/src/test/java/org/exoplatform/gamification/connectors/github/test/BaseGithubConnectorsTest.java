@@ -73,6 +73,7 @@ public abstract class BaseGithubConnectorsTest {
                                                  String repo,
                                                  String webhook,
                                                  String events,
+                                                 String exoEnvironment,
                                                  boolean enabled) {
     GitHubHookDAO gitHubHookDAO = getService(GitHubHookDAO.class);
     GitHubHookEntity gitHubHookEntity = new GitHubHookEntity();
@@ -81,6 +82,7 @@ public abstract class BaseGithubConnectorsTest {
     gitHubHookEntity.setRepo(repo);
     gitHubHookEntity.setWebhook(webhook);
     gitHubHookEntity.setEnabled(enabled);
+    gitHubHookEntity.setExoEnvironment(exoEnvironment);
     gitHubHookEntity.setEvents(events);
     gitHubHookEntity.setCreatedDate(new Date());
     gitHubHookEntity.setUpdatedDate(new Date());

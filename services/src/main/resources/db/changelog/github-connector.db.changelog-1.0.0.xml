@@ -55,6 +55,14 @@
             <append value=" ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_general_ci"/>
         </modifySql>
     </changeSet>
+
+    <changeSet author="exo-github-connector" id="1.0.0-2">
+        <addColumn tableName="GAM_GITHUB_HOOKS">
+            <column name="EXO_ENVIRONMENT" type="NVARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
 
 

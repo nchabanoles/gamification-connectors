@@ -37,7 +37,11 @@ public class GithubHooksManagement {
 
   private String           SECRET         = "";
 
+  private String           EXO_ENVIRONMENT         = "";
+
   private String           GITHUB_API_URL = "https://api.github.com/repos";
+
+  private String          WEBHOOK_URL = "portal/rest/gamification/connectors/github/webhooks";
 
   private ListenerService  listenerService;
 
@@ -51,6 +55,10 @@ public class GithubHooksManagement {
     this.gitHubHookDAO = gitHubHookDAO;
     this.SECRET = System.getProperty("gamification.connectors.github.hook.secret");
     this.TOKEN = System.getProperty("gamification.connectors.github.hook.token");
+    this.EXO_ENVIRONMENT = System.getProperty("gamification.connectors.github.exo.environment");
+    if(System.getProperty("gamification.connectors.github.hook.url")!=null){
+      this.WEBHOOK_URL = System.getProperty("gamification.connectors.github.hook.url");
+    }
   }
 
   public int getHooksFromGithub(String org, String repo) throws IOException {
@@ -75,6 +83,10 @@ public class GithubHooksManagement {
   }
 
   public Long addHook(String webhook, String org, String repo, boolean active) throws IOException, GithubHookException {
+    if(getHooksByOrgRepoAndEnvironment(org,repo,EXO_ENVIRONMENT).size()>0){
+      throw new GithubHookException("WebHook already exists");
+    }
+
     JSONObject config = new JSONObject();
     JSONObject hook = new JSONObject();
     String url = GITHUB_API_URL + "/" + org + "/" + repo + "/hooks";
@@ -138,12 +150,12 @@ public class GithubHooksManagement {
     return null;
   }
 
-  public void updateHook(GitHubHookEntity webhook) throws IOException, GithubHookException {
+  public void updateHook(GitHubHookEntity webhook, String fullPath) throws IOException, GithubHookException {
     JSONObject config = new JSONObject();
     JSONObject hook = new JSONObject();
     String url = GITHUB_API_URL + "/" + webhook.getOrganization() + "/" + webhook.getRepo() + "/hooks/" + webhook.getGithubId();
     try {
-      config.put("url", webhook.getWebhook());
+      config.put("url", fullPath);
       config.put("content_type", "json");
       config.put("insecure_ssl", "0");
       config.put("secret", SECRET);
@@ -202,7 +214,7 @@ public class GithubHooksManagement {
     deleteConnection.setRequestProperty("Authorization", "token " + TOKEN);
     int responseCode = deleteConnection.getResponseCode();
     if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) { // success
-      DeleteHookEntity(webhook);
+      deleteHookEntity(webhook);
     } else {
       try (BufferedReader in = new BufferedReader(new InputStreamReader(deleteConnection.getErrorStream()))) {
         String inputLine;
@@ -224,13 +236,22 @@ public class GithubHooksManagement {
   }
 
   public List<GitHubHookEntity> getAllHooks() {
-    return gitHubHookDAO.findAll();
+    return getHooksByExoEnvironment(EXO_ENVIRONMENT);
+  }
+
+  public List<GitHubHookEntity> getHooksByExoEnvironment(String environment) {
+    return gitHubHookDAO.getHooksByExoEnvironment(environment);
+  }
+
+  public List<GitHubHookEntity> getHooksByOrgRepoAndEnvironment(String org,String repo,String env) {
+    return gitHubHookDAO.getHooksByOrgRepoAndEnvironment(org,repo,env);
   }
 
   public GitHubHookEntity createHook(Long id, GitHubHookEntity hook, boolean enabled) {
     hook.setGithubId(id);
     hook.setEvents("push, pull_request,pull_request_review,pull_request_review_comment,pull_request_review_comment");
     hook.setEnabled(enabled);
+    hook.setExoEnvironment(EXO_ENVIRONMENT);
     hook.setCreatedDate(new Date());
     hook.setUpdatedDate(new Date());
     return gitHubHookDAO.create(hook);
@@ -241,7 +262,7 @@ public class GithubHooksManagement {
     return gitHubHookDAO.update(hook);
   }
 
-  public void DeleteHookEntity(GitHubHookEntity hook) {
+  public void deleteHookEntity(GitHubHookEntity hook) {
     gitHubHookDAO.delete(hook);
   }
 
@@ -299,4 +320,11 @@ public class GithubHooksManagement {
     return SECRET;
   }
 
+  public String getExoEnvironment() {
+    return EXO_ENVIRONMENT;
+  }
+
+  public String getWEBHOOK_URL() {
+    return WEBHOOK_URL;
+  }
 }

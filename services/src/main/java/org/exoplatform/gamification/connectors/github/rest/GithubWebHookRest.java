@@ -47,18 +47,20 @@ public class GithubWebHookRest implements ResourceContainer {
         String receiverId = "";
         String object = "";
         String repository = "";
+        String githubId = "";
 
         switch (event) {
         case "push": {
           ruleTitle = "pushCode";
-          senderId = githubHooksManagement.getUserByGithubId(infoNode.get("pusher").get("name").textValue());
-          LOG.info("Github hook called by {} for the event push",senderId);
+          githubId=infoNode.get("pusher").get("name").textValue();
+          senderId = githubHooksManagement.getUserByGithubId(githubId);
+          repository = infoNode.get("repository").get("full_name").textValue();
+          LOG.info("Github hook for the push event is called by {} with githubId : {}  on the repository : {}",senderId, githubId, repository);
           if (senderId != null) {
             Identity socialIdentity = getUserSocialId(senderId);
             if (socialIdentity != null) {
               receiverId = senderId;
               object = infoNode.get("head_commit").get("url").textValue();
-              repository = infoNode.get("repository").get("full_name").textValue();
               LOG.info("service=gamification-github-connector operation=push parameters=\"user_social_id:{},repository:{}\"", socialIdentity.getId(), repository);
               githubHooksManagement.broadcastGithubEvent(ruleTitle, senderId, receiverId, object);
             }
@@ -67,10 +69,12 @@ public class GithubWebHookRest implements ResourceContainer {
 
           break;
         case "pull_request": {
+          githubId=infoNode.get("sender").get("login").textValue();
+          senderId = githubHooksManagement.getUserByGithubId(githubId);
+          repository = infoNode.get("repository").get("full_name").textValue();
+          LOG.info("Github hook for the pull_request event is called by {} with githubId : {}  on the repository : {}",senderId, githubId, repository);
           if (infoNode.get("action").textValue().equals("opened")) {
             ruleTitle = "creatPullRequest";
-            senderId = githubHooksManagement.getUserByGithubId(infoNode.get("sender").get("login").textValue());
-            LOG.info("Github hook called by {} for the event pull_request",senderId);
             if (senderId != null) {
               Identity socialIdentity = getUserSocialId(senderId);
               if (socialIdentity != null) {
@@ -86,8 +90,10 @@ public class GithubWebHookRest implements ResourceContainer {
           break;
         case "pull_request_review_comment": {
           ruleTitle = "commentPullRequest";
-          senderId = githubHooksManagement.getUserByGithubId(infoNode.get("comment").get("user").get("login").textValue());
-          LOG.info("Github hook called by {} for the event pull_request_review_comment",senderId);
+          githubId=infoNode.get("comment").get("user").get("login").textValue();
+          senderId = githubHooksManagement.getUserByGithubId(githubId);
+          repository = infoNode.get("repository").get("full_name").textValue();
+          LOG.info("Github hook for the pull_request_review_comment event is called by {} with githubId : {}  on the repository : {}",senderId, githubId, repository);
           if (senderId != null) {
             Identity socialIdentity = getUserSocialId(senderId);
             if (socialIdentity != null) {
@@ -101,8 +107,10 @@ public class GithubWebHookRest implements ResourceContainer {
           break;
         case "pull_request_review": {
           ruleTitle = "reviewPullRequest";
-          senderId = githubHooksManagement.getUserByGithubId(infoNode.get("review").get("user").get("login").textValue());
-          LOG.info("Github hook called by {} for the event pull_request_review",senderId);
+          githubId=infoNode.get("review").get("user").get("login").textValue();
+          senderId = githubHooksManagement.getUserByGithubId(githubId);
+          repository = infoNode.get("repository").get("full_name").textValue();
+          LOG.info("Github hook for the pull_request_review event is called by {} with githubId : {}  on the repository : {}",senderId, githubId, repository);
           if (senderId != null) {
             Identity socialIdentity = getUserSocialId(senderId);
             if (socialIdentity != null) {
@@ -131,6 +139,7 @@ public class GithubWebHookRest implements ResourceContainer {
       }
 
     } else {
+      LOG.warn("Github hook Rest invoked with wrong secret key");
       return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 

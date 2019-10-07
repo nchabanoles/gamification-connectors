@@ -16,6 +16,8 @@ import org.exoplatform.social.core.identity.model.Identity;
 import org.exoplatform.social.service.rest.RestChecker;
 import org.exoplatform.social.service.rest.Util;
 
+import java.net.URI;
+
 @Path("/gamification/connectors/github/hooksmanagement")
 @Produces(MediaType.APPLICATION_JSON)
 
@@ -39,7 +41,7 @@ public class HooksManagementRest implements ResourceContainer {
   public Response gethooks(@Context UriInfo uriInfo) throws Exception {
     Identity sourceIdentity = Util.getAuthenticatedUserIdentity(portalContainerName);
     MediaType mediaType = RestChecker.checkSupportedFormat("json", SUPPORTED_FORMATS);
-    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null) {
+    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null || githubHooksManagement.getExoEnvironment() == null) {
       return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
@@ -55,12 +57,16 @@ public class HooksManagementRest implements ResourceContainer {
   @Path("hooks")
   public Response add(@Context UriInfo uriInfo, GitHubHookEntity hook) throws Exception {
     Identity sourceIdentity = Util.getAuthenticatedUserIdentity(portalContainerName);
-    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null) {
+    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null || githubHooksManagement.getExoEnvironment() == null) {
       return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
     try {
-      Long id = githubHooksManagement.addHook(hook.getWebhook(), hook.getOrganization(), hook.getRepo(), hook.getEnabled());
+      String baseUri = uriInfo.getBaseUri().toString();
+      String server_domain = baseUri.split("portal")[0];
+      hook.setWebhook(githubHooksManagement.getWEBHOOK_URL());
+      String fullPath = server_domain + githubHooksManagement.getWEBHOOK_URL();
+      Long id = githubHooksManagement.addHook(fullPath, hook.getOrganization(), hook.getRepo(), hook.getEnabled());
       githubHooksManagement.createHook(id, hook, true);
       LOG.info("New webhook added by {}",sourceIdentity.getRemoteId());
       return Response.status(Response.Status.CREATED).build();
@@ -74,11 +80,15 @@ public class HooksManagementRest implements ResourceContainer {
   @Path("hooks/{id}")
   public Response edit(@Context UriInfo uriInfo, @PathParam("id") Long id, GitHubHookEntity hook) throws Exception {
     Identity sourceIdentity = Util.getAuthenticatedUserIdentity(portalContainerName);
-    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null) {
+    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null || githubHooksManagement.getExoEnvironment() == null) {
       return Response.status(Response.Status.UNAUTHORIZED).build();
     }
     try {
-      githubHooksManagement.updateHook(hook);
+      String baseUri = uriInfo.getBaseUri().toString();
+      String server_domain = baseUri.split("portal")[0];
+      hook.setWebhook(githubHooksManagement.getWEBHOOK_URL());
+      String fullPath = server_domain + githubHooksManagement.getWEBHOOK_URL();
+      githubHooksManagement.updateHook(hook,fullPath);
       LOG.info("Webhook {} edited by {}",id, sourceIdentity.getRemoteId());
       return Response.ok().build();
     } catch (Exception e) {
@@ -91,7 +101,7 @@ public class HooksManagementRest implements ResourceContainer {
   @Path("hooks/{id}")
   public Response deletehook(@Context UriInfo uriInfo, @PathParam("id") Long id) throws Exception {
     Identity sourceIdentity = Util.getAuthenticatedUserIdentity(portalContainerName);
-    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null) {
+    if (sourceIdentity == null || githubHooksManagement.getSecret() == null || githubHooksManagement.getToken() == null || githubHooksManagement.getExoEnvironment() == null) {
       return Response.status(Response.Status.UNAUTHORIZED).build();
     }
     try {
