@@ -114,6 +114,7 @@
             <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.18.2.0</version>
             </plugin>
             <plugin>
                 <groupId>com.jcabi</groupId>
