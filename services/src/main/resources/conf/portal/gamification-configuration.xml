@@ -155,7 +155,7 @@
     </external-component-plugins>
 
     <external-component-plugins>
-        <target-component>org.exoplatform.addons.gamification.service.setting.rule.c</target-component>
+        <target-component>org.exoplatform.addons.gamification.service.setting.rule.RuleRegistry</target-component>
         <component-plugin>
             <name>rule.PullRequestValidated</name>
             <set-method>addPlugin</set-method>

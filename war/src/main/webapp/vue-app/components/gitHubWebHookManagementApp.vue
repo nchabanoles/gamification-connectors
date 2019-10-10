@@ -5,11 +5,12 @@
             <i :class="alertIcon"></i>{{message}}
         </div>
         <v-layout>
-
-            <v-data-table :headers="headers" :items="hookList" sort-by="id" class="elevation-1" hide-default-footer>
+            <v-data-table :headers="headers" :items="hookList" :search="search" sort-by="id" class="elevation-1">
                 <template v-slot:top>
                     <v-toolbar flat color="white">
                         <div class="flex-grow-1"></div>
+                        <v-col cols="12" sm="6" md="3"><v-text-field v-model="search"  append-icon="search" label="Search"></v-text-field></v-col>
+                        <v-divider class="mx-4" inset vertical></v-divider>
                         <v-dialog v-model="dialog" max-width="500px">
                             <template v-slot:activator="{ on }">
                                 <v-btn color="primary" dark class="mb-2" v-on="on">New Connector</v-btn>
@@ -91,6 +92,7 @@
 <script>
 export default {
     data: () => ({
+        search: '',
         dialog: false,
         confirmDialog: false,
         itemToDelete: 0,
