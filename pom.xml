@@ -45,7 +45,8 @@
     <url>https://github.com/exo-addons/gamification-connectors</url>
   </scm>
   <properties>
-    <org.exoplatform.platform.version>6.0.0-M01</org.exoplatform.platform.version>
+    <org.exoplatform.commons.version>6.0.0-M19</org.exoplatform.commons.version>
+    <org.exoplatform.social.version>6.0.0-M19</org.exoplatform.social.version>
     <org.lombok.version>1.18.2</org.lombok.version>
     <org.jackson.version>2.4.2</org.jackson.version>
   </properties>
@@ -53,9 +54,16 @@
     <dependencies>
       <!-- Import versions from platform project -->
       <dependency>
-        <groupId>org.exoplatform.platform</groupId>
-        <artifactId>platform</artifactId>
-        <version>${org.exoplatform.platform.version}</version>
+        <groupId>org.exoplatform.commons</groupId>
+        <artifactId>commons-component-common</artifactId>
+        <version>${org.exoplatform.commons.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.exoplatform.social</groupId>
+        <artifactId>social-component-core</artifactId>
+        <version>${org.exoplatform.social.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
