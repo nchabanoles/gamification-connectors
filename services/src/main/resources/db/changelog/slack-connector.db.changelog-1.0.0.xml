@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="autoIncrement" value="true" dbms="mysql,mssql,h2,sybase,db2,hsqldb"/>
+    <property name="autoIncrement" value="false" dbms="oracle,postgresql"/>
+
+    <!-- Definition of SLACK_ACCOUNT table -->
+    <changeSet author="exo-slack-connector" id="1.0.0-1">
+        <createTable tableName="GAM_SLACK_ACCOUNTS">
+
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}" startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_GAM_SLACK_ACCOUNTS"/>
+            </column>
+
+            <column name="SLACK_ID" type="NVARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IDENTITY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SLACK_TEAM_ID" type="NVARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="NVARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TOKEN" type="NVARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <modifySql dbms="mysql">
+            <append value=" ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_general_ci"/>
+        </modifySql>
+    </changeSet>
+</databaseChangeLog>

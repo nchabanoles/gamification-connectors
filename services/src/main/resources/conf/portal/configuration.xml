@@ -21,6 +21,10 @@
         <type>org.exoplatform.gamification.connectors.github.services.GithubIMSetting</type>
     </component>
 
+    <component>
+        <type>org.exoplatform.gamification.connectors.slack.rest.SlackWebHookRest</type>
+    </component>
+
     <external-component-plugins>
         <target-component>org.exoplatform.social.core.manager.IdentityManager</target-component>
         <component-plugin>

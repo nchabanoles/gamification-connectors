@@ -24,7 +24,7 @@
   <parent>
     <artifactId>addons-parent-pom</artifactId>
     <groupId>org.exoplatform.addons</groupId>
-    <version>10</version>
+    <version>12-RC01</version>
     <relativePath/>
   </parent>
   <groupId>org.exoplatform.addons.gamification-connectors</groupId>
@@ -39,16 +39,17 @@
     <module>services</module>
   </modules>
   <scm>
-    <connection>scm:git:git://github.com/exo-addons/gamification-connectors.git</connection>
-    <developerConnection>scm:git:git@github.com:exo-addons/gamification-connectors.git</developerConnection>
+    <connection>scm:git:git://github.com/meeds-io/gamification-connectors.git</connection>
+    <developerConnection>scm:git:git@github.com:meeds-io/gamification-connectors.git</developerConnection>
     <tag>HEAD</tag>
-    <url>https://github.com/exo-addons/gamification-connectors</url>
+    <url>https://github.com/meeds-io/gamification-connectors</url>
   </scm>
   <properties>
     <org.exoplatform.commons.version>6.0.0-M19</org.exoplatform.commons.version>
     <org.exoplatform.social.version>6.0.0-M19</org.exoplatform.social.version>
     <org.lombok.version>1.18.2</org.lombok.version>
     <org.jackson.version>2.4.2</org.jackson.version>
+    <com.slack.version>1.1.2</com.slack.version>
   </properties>
   <dependencyManagement>
     <dependencies>

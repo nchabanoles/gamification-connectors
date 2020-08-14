@@ -13,6 +13,11 @@
         <type>org.exoplatform.gamification.connectors.github.dao.GitHubHookDAO</type>
     </component>
 
+    <!-- Slack ID storage (JPA) -->
+    <component>
+        <type>org.exoplatform.gamification.connectors.slack.dao.SlackAccountDAO</type>
+    </component>
+
     <!-- Gamification Connector storage layout (Liquibase initializer) -->
     <external-component-plugins>
         <target-component>org.exoplatform.commons.api.persistence.DataInitializer</target-component>
@@ -25,6 +30,22 @@
                     <name>changelogs</name>
                     <description>Change logs of GitHub Connector</description>
                     <value>db/changelog/github-connector.db.changelog-1.0.0.xml</value>
+                </values-param>
+            </init-params>
+        </component-plugin>
+    </external-component-plugins>
+
+    <external-component-plugins>
+        <target-component>org.exoplatform.commons.api.persistence.DataInitializer</target-component>
+        <component-plugin>
+            <name>GamificationChangeLogsPlugin</name>
+            <set-method>addChangeLogsPlugin</set-method>
+            <type>org.exoplatform.commons.persistence.impl.ChangeLogsPlugin</type>
+            <init-params>
+                <values-param>
+                    <name>changelogs</name>
+                    <description>Change logs of Slack Connector</description>
+                    <value>db/changelog/slack-connector.db.changelog-1.0.0.xml</value>
                 </values-param>
             </init-params>
         </component-plugin>

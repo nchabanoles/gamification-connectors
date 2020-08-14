@@ -21,6 +21,19 @@
     </component>
 
     <component>
+        <type>org.exoplatform.gamification.connectors.slack.dao.SlackAccountDAO</type>
+    </component>
+
+    <component>
+        <key>org.exoplatform.social.core.manager.IdentityManager</key>
+        <type>org.exoplatform.gamification.connectors.mock.IdentityManagerMock</type>
+    </component>
+    <component>
+        <key>org.exoplatform.social.core.space.spi.SpaceService</key>
+        <type>org.exoplatform.gamification.connectors.mock.SpaceServiceMock</type>
+    </component>
+
+    <component>
         <key>org.exoplatform.commons.api.persistence.DataInitializer</key>
         <type>org.exoplatform.commons.persistence.impl.LiquibaseDataInitializer</type>
         <init-params>

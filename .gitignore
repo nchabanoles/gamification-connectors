@@ -135,3 +135,6 @@ nbdist/
 nbactions.xml
 .nb-gradle/
 
+
+### NodeJS ###
+node_modules/

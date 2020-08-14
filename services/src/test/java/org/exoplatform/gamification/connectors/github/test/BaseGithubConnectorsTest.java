@@ -1,6 +1,10 @@
 package org.exoplatform.gamification.connectors.github.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 
 import org.exoplatform.container.PortalContainer;
+import org.exoplatform.container.RootContainer;
 import org.exoplatform.container.component.RequestLifeCycle;
 import org.exoplatform.gamification.connectors.github.dao.GitHubAccountDAO;
 import org.exoplatform.gamification.connectors.github.dao.GitHubHookDAO;
@@ -26,9 +31,10 @@ public abstract class BaseGithubConnectorsTest {
 
   @BeforeClass
   public static void beforeTest() {
-    container = PortalContainer.getInstance();
-    assertNotNull(container);
-    assertTrue(container.isStarted());
+    RootContainer rootContainer = RootContainer.getInstance();
+    container = rootContainer.getPortalContainer("portal");
+    assertNotNull("Container shouldn't be null", container);
+    assertTrue("Container should have been started", container.isStarted());
   }
 
   @Before
