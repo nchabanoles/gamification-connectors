@@ -24,7 +24,7 @@
   <parent>
     <artifactId>addons-parent-pom</artifactId>
     <groupId>org.exoplatform.addons</groupId>
-    <version>10</version>
+    <version>14-M04</version>
     <relativePath/>
   </parent>
   <groupId>org.exoplatform.addons.gamification-connectors</groupId>
@@ -45,8 +45,8 @@
     <url>https://github.com/exo-addons/gamification-connectors</url>
   </scm>
   <properties>
-    <org.exoplatform.commons.version>6.0.0-M19</org.exoplatform.commons.version>
-    <org.exoplatform.social.version>6.0.0-M19</org.exoplatform.social.version>
+    <org.exoplatform.commons.version>6.2.x-SNAPSHOT</org.exoplatform.commons.version>
+    <org.exoplatform.social.version>6.2.x-SNAPSHOT</org.exoplatform.social.version>
     <org.lombok.version>1.18.2</org.lombok.version>
     <org.jackson.version>2.4.2</org.jackson.version>
   </properties>
