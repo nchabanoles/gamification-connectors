@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.exoplatform.addons.gamification-connectors</groupId>
     <artifactId>gamification-connectors</artifactId>
-    <version>1.0.x-SNAPSHOT</version>
+    <version>1.0.0-M05</version>
   </parent>
   <artifactId>gamification-connectors-packaging</artifactId>
   <packaging>pom</packaging>
