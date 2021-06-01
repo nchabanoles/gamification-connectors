@@ -45,8 +45,8 @@
     <url>https://github.com/exo-addons/gamification-connectors</url>
   </scm>
   <properties>
-    <org.exoplatform.commons.version>6.2.x-SNAPSHOT</org.exoplatform.commons.version>
-    <org.exoplatform.social.version>6.2.x-SNAPSHOT</org.exoplatform.social.version>
+    <org.exoplatform.commons.version>6.2.0-M21</org.exoplatform.commons.version>
+    <org.exoplatform.social.version>6.2.0-M21</org.exoplatform.social.version>
     <org.lombok.version>1.18.2</org.lombok.version>
     <org.jackson.version>2.4.2</org.jackson.version>
   </properties>
