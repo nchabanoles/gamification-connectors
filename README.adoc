@@ -1,17 +1,10 @@
-= eXo Add-on:: eXo Gamification Connectors
+= Meeds Add-on:: Gamification Connectors
 // GitHub/AsciiDoc Configuration
 ifdef::env-github[]
 :note-caption: :information_source:
 :tip-caption: :bulb:
 endif::[]
-// eXo CI informations
-:ci-url: https://ci.exoplatform.org/job/addons-community/job/
-:project-branch: master
-:ci-job-name: addons-community/addon-eXo Add-on:: eXo Gamification Connectors-{project-branch}-ci
 
-eXo Add-on for eXo Gamification Connectors
+Meeds Gamification Connectors
 
-[NOTE]
---
-image:https://ci.exoplatform.org/buildStatus/icon?job={ci-job-name}["Build Status", link="{ci-url}{ci-job-name}/"]
---
+image:https://ci.exoplatform.org/buildStatus/icon?job=addons-community/addon-gamification-connectors-master-ci["Build Status", link="https://ci.exoplatform.org/job/addons-community/job/addon-gamification-connectors-master-ci"]
