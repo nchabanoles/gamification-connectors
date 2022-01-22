@@ -21,7 +21,7 @@ import lombok.Data;
 public class GitHubHookEntity implements Serializable {
 
   @Id
-  @SequenceGenerator(name = "SEQ_GAM_GITHUB_HOOKS_ID", sequenceName = "SEQ_GAM_GITHUB_HOOKS_ID")
+  @SequenceGenerator(name = "SEQ_GAM_GITHUB_HOOKS_ID", sequenceName = "SEQ_GAM_GITHUB_HOOKS_ID", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_GAM_GITHUB_HOOKS_ID")
   @Column(name = "ID")
   protected Long    id;

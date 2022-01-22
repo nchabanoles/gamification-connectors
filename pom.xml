@@ -47,9 +47,8 @@
   <properties>
     <org.exoplatform.commons.version>6.3.x-SNAPSHOT</org.exoplatform.commons.version>
     <org.exoplatform.social.version>6.3.x-SNAPSHOT</org.exoplatform.social.version>
-    <org.lombok.version>1.18.2</org.lombok.version>
     <org.jackson.version>2.4.2</org.jackson.version>
-    
+
     <!-- Sonar properties -->
     <sonar.organization>meeds-io</sonar.organization>
   </properties>
@@ -85,14 +84,6 @@
         <version>${project.version}</version>
         <scope>provided</scope>
         <type>war</type>
-      </dependency>
-
-
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${org.lombok.version}</version>
-        <scope>provided</scope>
       </dependency>
 
       <dependency>

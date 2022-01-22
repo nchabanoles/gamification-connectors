@@ -20,7 +20,7 @@ import lombok.Data;
 public class GitHubAccountEntity implements Serializable {
 
   @Id
-  @SequenceGenerator(name = "SEQ_GAM_GITHUB_ACCOUNTS_ID", sequenceName = "SEQ_GAM_GITHUB_ACCOUNTS_ID")
+  @SequenceGenerator(name = "SEQ_GAM_GITHUB_ACCOUNTS_ID", sequenceName = "SEQ_GAM_GITHUB_ACCOUNTS_ID", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_GAM_GITHUB_ACCOUNTS_ID")
   @Column(name = "ID")
   protected Long   id;

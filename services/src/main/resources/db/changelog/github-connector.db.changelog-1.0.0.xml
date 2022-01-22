@@ -63,6 +63,8 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet author="exo-github-connector" id="1.0.0-3" dbms="hsqldb">
+        <createSequence sequenceName="SEQ_GAM_GITHUB_HOOKS_ID" startValue="1"/>
+        <createSequence sequenceName="SEQ_GAM_GITHUB_ACCOUNTS_ID" startValue="1"/>
+    </changeSet>
 </databaseChangeLog>
-
-
