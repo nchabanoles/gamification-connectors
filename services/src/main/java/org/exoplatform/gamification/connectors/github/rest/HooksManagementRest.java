@@ -7,6 +7,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.commons.lang.StringUtils;
 import org.exoplatform.gamification.connectors.github.entity.GitHubHookEntity;
 import org.exoplatform.gamification.connectors.github.services.GithubHooksManagement;
 import org.exoplatform.services.log.ExoLogger;
@@ -114,4 +115,15 @@ public class HooksManagementRest implements ResourceContainer {
     }
   }
 
+  @GET
+  @RolesAllowed("users")
+  @Path("users/{id}")
+  public Response getUserIdByGithubId(@Context UriInfo uriInfo, @PathParam("id") String githubId) {
+    String userId = githubHooksManagement.getUserByGithubId(githubId);
+    if(StringUtils.isNotEmpty(userId)) {
+      return Response.ok(userId).build();
+    } else {
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+  }
 }
